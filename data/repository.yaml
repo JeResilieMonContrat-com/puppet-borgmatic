@@ -1,0 +1,8 @@
+--- {}
+
+borgmatic::repository::repo: ~
+borgmatic::repository::passphrase: ~
+borgmatic::repository::use_encryption: true
+borgmatic::repository::use_authentication: true
+borgmatic::repository::encryptions: 'repokey-blake2'
+borgmatic::repository::authentications: 'authenticated-blake2'

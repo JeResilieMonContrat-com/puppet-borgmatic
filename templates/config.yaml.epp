@@ -1,0 +1,11 @@
+# config.yaml: Managed by puppet.
+#
+location:
+    source_directories:
+    <% $borgmatic::client::source_directories.each |$directory| { %>
+        - <%= $directory %>
+    <% } -%>
+    repositories:
+    <% $borgmatic::client::repositories.each |$repository| { %>
+        - <%= $repository %>
+    <% } -%>

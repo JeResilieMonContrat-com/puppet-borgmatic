@@ -1,0 +1,21 @@
+---
+version: 5
+
+defaults:
+  datadir: data
+  data_hash: yaml_data
+
+hierarchy:
+  - name: 'Databases'
+    paths:
+      - 'databases/postgresql.yaml'
+      - 'databases/mysql.yaml'
+
+  - name: 'Repository'
+    path: 'repository.yaml'
+
+  - name: 'Client'
+    path: 'client.yaml'
+
+  - name: 'common'
+    path: 'common.yaml'
