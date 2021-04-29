@@ -2,12 +2,9 @@
 # Inititate a borgmatic repository
 #
 define borgmatic::repository (
-  String $repo,
-  Optional[String] $passphrase,
-  Optional[Boolean] $use_encryption,
-  Optional[Boolean] $use_authentication,
-  Optional[Enum['repokey', 'keyfile', 'repokey-blake2', 'keyfile-blake2']] $encryptions,
-  Optional[Enum['authenticated', 'authenticated-blake2']] $authentications
+  String $repo                                                                                                                    = undef,
+  Optional[String] $passphrase                                                                                                    = undef,
+  Optional[Enum['authenticated', 'authenticated-blake2', 'repokey', 'keyfile', 'repokey-blake2', 'keyfile-blake2']] $encryptions  = undef,
 ) {
 
   contain borgmatic::config
@@ -18,32 +15,20 @@ define borgmatic::repository (
 
   $path = "${$borgmatic::base_path}/borgmatic_${repo}"
 
-  if ($use_authentication == false and $use_encryption == true) {
-    $use_authentication = true
+  if ($encryptions == undef) {
+    $encryptions = 'none'
+    $environment = ''
+  } else {
+    $environment = "BORG_PASSPHRASE=${passphrase}"
   }
 
-  if ($use_encryption and $use_authentication) {
-    if $passphrase == undef {
-      fail("A passphrase is needed to initiate a borg repository with authentication and encryption.")
-    }
-    exec { "create ${repo} borg repository":
-      command     => "borg init --encryption ${encryptions} ${path}",
-      environment => "BORG_PASSPHRASE=${passphrase}",
-      require     => Package['borgbackup'],
-    }
-  } elsif ($use_authentication) {
-    if $passphrase == undef {
-      fail("A passphrase is needed to initiate a borg repository with authentication.")
-    }
-    exec { "create ${repo} borg repository":
-      command     => "borg init --encryption ${authentications} ${path}",
-      environment => "BORG_PASSPHRASE=${passphrase}",
-      require     => Package['borgbackup'],
-    }
-  } else {
-    exec { "create ${repo} borg repository":
-    command     => "borg init --encryption none ${path}",
-      require     => Package['borgbackup'],
-    }
+  if ($encryptions != 'none' and $passphrase == undef) {
+    fail("A passphrase is needed to initiate a borg repository with encryption.")
+  }
+
+  exec { "create ${repo} borg repository":
+    command     => "borg init --encryption ${encryptions} ${path}",
+    environment => $environment,
+    require     => Package['borgbackup'],
   }
 }
