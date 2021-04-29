@@ -1,8 +1,7 @@
 # @summary
-#
 # Append postegresql backup configuration to the borgmatic configuiration file
 #
-class borgmatic::postgresql (
+class borgmatic::databases::postgresql (
   String $database,
   Optional[String] $hostname,
   Optional[Integer] $port,

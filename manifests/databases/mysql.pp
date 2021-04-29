@@ -1,8 +1,7 @@
 # @summary
-#
 # Append mysql backup configuration to the borgmatic configuiration file
 #
-class borgmatic::mysql (
+class borgmatic::databases::mysql (
   String $database,
   Optional[String] $hostname,
   Optional[Integer] $port,

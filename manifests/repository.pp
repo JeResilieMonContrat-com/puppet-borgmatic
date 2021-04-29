@@ -10,7 +10,7 @@ define borgmatic::repository (
   contain borgmatic::config
 
   if $repo == undef {
-    fail("A name is needed to initiate a borg repository.")
+    fail('A name is needed to initiate a borg repository.')
   }
 
   $path = "${$borgmatic::base_path}/borgmatic_${repo}"
@@ -23,7 +23,7 @@ define borgmatic::repository (
   }
 
   if ($encryptions != 'none' and $passphrase == undef) {
-    fail("A passphrase is needed to initiate a borg repository with encryption.")
+    fail('A passphrase is needed to initiate a borg repository with encryption.')
   }
 
   exec { "create ${repo} borg repository":
