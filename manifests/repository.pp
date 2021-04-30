@@ -29,6 +29,7 @@ define borgmatic::repository (
   exec { "create ${repo} borg repository":
     command     => "borg init --encryption ${encryptions} ${path}",
     environment => $environment,
-    require     => Package['borgbackup'],
+    unless      => "ls ${path}",
+    require     => Package['borgbackup']
   }
 }
