@@ -3,6 +3,15 @@
 borgmatic::client::config_file_destination: '/etc/borgmatic'
 borgmatic::client::source_directories: ~
 borgmatic::client::repositories: ~
+borgmatic::client::use_cron: false
+borgmatic::client::cron_user: 'root'
+borgmatic::client::cron_command: '/root/.local/bin/borgmatic'
+borgmatic::client::cron_environment: ~
+borgmatic::client::cron_minute: '*'
+borgmatic::client::cron_hour: '*'
+borgmatic::client::cron_monthday: '*'
+borgmatic::client::cron_month: '*'
+borgmatic::client::cron_weekday: '*'
 borgmatic::client::one_file_system: ~
 borgmatic::client::numeric_owner: ~
 borgmatic::client::atime: ~

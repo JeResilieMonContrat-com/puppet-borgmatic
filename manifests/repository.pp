@@ -21,11 +21,11 @@ define borgmatic::repository (
 
   if ($configure_ssh) {
     borgmatic::ssh { $repo:
-      ssh_file_path   => $ssh_file_path,
-      command         => $ssh_command,
-      backup_path     => $borgmatic::base_path,
-      client          => $repo,
-      ssh_public_key  => $ssh_public_key
+      ssh_file_path  => $ssh_file_path,
+      command        => $ssh_command,
+      backup_path    => $borgmatic::base_path,
+      client         => $repo,
+      ssh_public_key => $ssh_public_key
     }
   }
 
