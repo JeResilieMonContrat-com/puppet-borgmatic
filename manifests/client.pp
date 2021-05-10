@@ -6,7 +6,7 @@ define borgmatic::client (
   Optional[String] $backup_user                                               = undef,
   Optional[String] $config_file_destination                                   = '/etc/borgmatic',
   Optional[String] $config_file_name                                          = 'config.yaml',
-  Optional[Array] $source_directories                                         = undef,
+  Array $source_directories                                                   = undef,
   Array $backup_servers                                                       = undef,
   Optional[Boolean] $one_file_system                                          = undef,
   Optional[Boolean] $numeric_owner                                            = undef,
