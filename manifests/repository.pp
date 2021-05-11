@@ -44,6 +44,6 @@ define borgmatic::repository (
     command     => "borg init --encryption ${encryptions} ${path}",
     environment => $environment,
     unless      => "ls ${path}",
-    require     => Package['borgbackup']
+    require     => Package['borgmatic']
   }
 }

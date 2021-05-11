@@ -6,5 +6,5 @@
 class borgmatic::install {
   assert_private()
 
-  ensure_packages(['borgbackup', 'borgmatic'])
+  ensure_packages(['borgmatic'])
 }
