@@ -11,7 +11,7 @@ define borgmatic::cron (
   Optional[String] $cron_monthday                                             = '*',
   Optional[String] $cron_month                                                = '*'
 ){
-  cron { 'borgmatic':
+  cron { $title:
     ensure      => present,
     command     => $cron_command,
     environment => $cron_environment,
