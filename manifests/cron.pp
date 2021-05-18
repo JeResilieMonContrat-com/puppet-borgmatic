@@ -5,11 +5,11 @@ define borgmatic::cron (
   Optional[String] $cron_command                                              = '/root/.local/bin/borgmatic',
   Optional[String] $cron_environment                                          = undef,
   Optional[String] $cron_user                                                 = 'root',
-  Optional[String] $cron_minute                                               = '*',
-  Optional[String] $cron_hour                                                 = '*',
-  Optional[String] $cron_weekday                                              = '*',
-  Optional[String] $cron_monthday                                             = '*',
-  Optional[String] $cron_month                                                = '*'
+  Optional $cron_minute                                                       = '*',
+  Optional $cron_hour                                                         = '*',
+  Optional $cron_weekday                                                      = '*',
+  Optional $cron_monthday                                                     = '*',
+  Optional $cron_month                                                        = '*'
 ){
   cron { $title:
     ensure      => present,
