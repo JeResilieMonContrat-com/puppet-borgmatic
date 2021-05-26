@@ -13,5 +13,4 @@ class borgmatic (
   $backup_permissions = '0750',
 ) {
   contain borgmatic::install
-  # contain borgmatic::service
 }
