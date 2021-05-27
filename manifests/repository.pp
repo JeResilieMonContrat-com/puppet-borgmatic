@@ -3,6 +3,7 @@
 #
 define borgmatic::repository (
   String $repo                                                                                                                    = undef,
+  Optional[String] $backup_user                                                                                                   = 'root',
   Optional[Boolean] $configure_ssh                                                                                                = false,
   Optional[String] $ssh_file_path                                                                                                 = undef,
   Optional[String] $ssh_public_key                                                                                                = undef,
@@ -41,7 +42,7 @@ define borgmatic::repository (
   }
 
   exec { "create ${repo} borg repository":
-    command     => "borg init --encryption ${encryptions} ${path}",
+    command     => "sudo -u ${backup_user} borg init --encryption ${encryptions} ${path}",
     environment => $environment,
     unless      => "ls ${path}",
     require     => Package['borgmatic']
