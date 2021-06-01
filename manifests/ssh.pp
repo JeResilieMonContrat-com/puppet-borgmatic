@@ -11,6 +11,7 @@ define borgmatic::ssh (
   file_line { $title:
     ensure => present,
     path   => $ssh_file_path,
-    line   => "command=\"${command} ${backup_path}/borgmatic_${client}\",restrict ${ssh_public_key}"
+    line   => "command=\"${command} ${backup_path}/borgmatic_${client}\",restrict ${ssh_public_key}",
+    match  => "^.* [${ssh_public_key}]"
   }
 }
