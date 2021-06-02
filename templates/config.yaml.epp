@@ -307,37 +307,37 @@ hooks:
         - name: <%= $database[0] -%>
 <% } -%>
 <% if $database[1][username] != undef { %>
-        username: <%= $database[1][username] -%>
+          username: <%= $database[1][username] -%>
 <% } -%>
 <% if $database[1][password] != undef { %>
-        password: <%= $database[1][password] -%>
+          password: <%= $database[1][password] -%>
 <% } -%>
 <% if $database[1][port] != undef { %>
-        port: <%= $database[1][port] -%>
+          port: <%= $database[1][port] -%>
 <% } -%>
 <% if $database[1][hostname] != undef { %>
-        hostname: <%= $database[1][hostname] -%>
+          hostname: <%= $database[1][hostname] -%>
 <% } -%>
 <% if $database[1][format] != undef { %>
-        format: <%= $database[1][format] -%>
+          format: <%= $database[1][format] -%>
 <% } -%>
 <% if $database[1][ssl_mode] != undef { %>
-        ssl_mode: <%= $database[1][ssl_mode] -%>
+          ssl_mode: <%= $database[1][ssl_mode] -%>
 <% } -%>
 <% if $database[1][ssl_cert] != undef { %>
-        ssl_cert: <%= $database[1][ssl_cert] -%>
+          ssl_cert: <%= $database[1][ssl_cert] -%>
 <% } -%>
 <% if $database[1][ssl_key] != undef { %>
-        ssl_key: <%= $database[1][ssl_key] -%>
+          ssl_key: <%= $database[1][ssl_key] -%>
 <% } -%>
 <% if $database[1][ssl_root_cert] != undef { %>
-        ssl_root_cert: <%= $database[1][ssl_root_cert] -%>
+          ssl_root_cert: <%= $database[1][ssl_root_cert] -%>
 <% } -%>
 <% if $database[1][ssl_crl] != undef { %>
-        ssl_crl: <%= $database[1][ssl_crl] -%>
+          ssl_crl: <%= $database[1][ssl_crl] -%>
 <% } -%>
 <% if $database[1][options] != undef { %>
-        options: <%= $database[1][options] %>
+          options: <%= $database[1][options] %>
 <% } -%>
 <% } -%>
 <% } -%>
