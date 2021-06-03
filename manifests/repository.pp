@@ -34,7 +34,7 @@ define borgmatic::repository (
     $encryptions = 'none'
     $environment = ''
   } else {
-    $environment = "BORG_PASSPHRASE=${passphrase}"
+    $environment = "BORG_PASSPHRASE='${passphrase}'"
   }
 
   if ($encryptions != 'none' and $passphrase == undef) {
@@ -42,8 +42,7 @@ define borgmatic::repository (
   }
 
   exec { "create ${repo} borg repository":
-    command     => "sudo -u ${backup_user} borg init --encryption ${encryptions} ${path}",
-    environment => $environment,
+    command     => "sudo -u ${backup_user} ${environment} borg init --encryption=${encryptions} ${path}",
     unless      => "ls ${path}",
     require     => Package['borgmatic']
   }
