@@ -3,6 +3,9 @@
 #
 define borgmatic::client (
   String $client                                                              = undef,
+  Optional[String] $mode                                                      = '0600',
+  Optional[String] $owner                                                     = 'root',
+  Optional[String] $group                                                     = 'root',
   Optional[String] $backup_user                                               = undef,
   Optional[String] $config_file_destination                                   = '/etc/borgmatic',
   Optional[String] $config_file_name                                          = 'config.yaml',
@@ -83,6 +86,9 @@ define borgmatic::client (
 
   file { "${config_file_destination}/${config_file_name}":
     ensure  => file,
+    mode    => $mode,
+    owner   => $owner,
+    group   => $group,
     content => epp('borgmatic/config.yaml.epp',
       {
         client                                => $client,
