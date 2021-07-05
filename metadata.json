@@ -6,7 +6,10 @@
   "license": "GPL-3.0-or-later",
   "source": "",
   "dependencies": [
-
+    {
+      "name": "npwalker-recursive_file_permissions",
+      "version_requirement": ">= 0.6.1"
+    }
   ],
   "operatingsystem_support": [
     {

@@ -4,12 +4,15 @@
 define borgmatic::repository (
   String $repo                                                                                                                    = undef,
   Optional[String] $backup_user                                                                                                   = 'root',
+  Optional[String] $backup_group                                                                                                  = 'root',
   Optional[Boolean] $configure_ssh                                                                                                = false,
   Optional[String] $ssh_file_path                                                                                                 = undef,
   Optional[String] $ssh_public_key                                                                                                = undef,
   Optional[String] $ssh_command                                                                                                   = undef,
   Optional[String] $passphrase                                                                                                    = undef,
   Optional[Enum['authenticated', 'authenticated-blake2', 'repokey', 'keyfile', 'repokey-blake2', 'keyfile-blake2']] $encryptions  = undef,
+  Optional[String] $dir_permissions                                                                                               = '0750',
+  Optional[String] $files_permissions                                                                                             = '0640'
 ) {
 
   contain borgmatic::config
@@ -41,9 +44,17 @@ define borgmatic::repository (
     fail('A passphrase is needed to initiate a borg repository with encryption.')
   }
 
-  exec { "create ${repo} borg repository":
-    command     => "sudo -u ${backup_user} ${environment} borg init --encryption=${encryptions} ${path}",
+  exec { "borgmatic_repository_creation_${repo}":
+    command     => "${environment} borg init --encryption=${encryptions} ${path}",
     unless      => "ls ${path}",
     require     => Package['borgmatic']
+  }
+
+  recursive_file_permissions { $path:
+    file_mode => $files_permissions,
+    dir_mode  => $dir_permissions,
+    owner     => $backup_user,
+    group     => $backup_group,
+    require   => Exec["borgmatic_repository_creation_${repo}"]
   }
 }
