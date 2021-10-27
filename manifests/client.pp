@@ -76,7 +76,7 @@ define borgmatic::client (
   Optional[Array] $after_everything                                           = undef,
   Optional[Array] $on_error                                                   = undef,
   Optional[String] $database_type                                             = undef,
-  Optional[Hash] $databases                                                   = undef,
+  Optional[Array] $databases                                                   = undef,
   Optional[String] $healthchecks                                              = undef,
   Optional[String] $cronitor                                                  = undef,
   Optional[String] $pagerduty                                                 = undef,

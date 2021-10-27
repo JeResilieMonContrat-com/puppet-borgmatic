@@ -303,41 +303,41 @@ hooks:
     postgresql_databases:
 <% } -%>
 <% $databases.each | $database | { -%>
-<% if $database[0] != undef { -%>
-        - name: <%= $database[0] -%>
+<% if $database[name] != undef { %>
+        - name: <%= $database[name] -%>
 <% } -%>
-<% if $database[1][username] != undef { %>
-          username: <%= $database[1][username] -%>
+<% if $database[username] != undef { %>
+          username: <%= $database[username] -%>
 <% } -%>
-<% if $database[1][password] != undef { %>
-          password: <%= $database[1][password] -%>
+<% if $database[password] != undef { %>
+          password: <%= $database[password] -%>
 <% } -%>
-<% if $database[1][port] != undef { %>
-          port: <%= $database[1][port] -%>
+<% if $database[port] != undef { %>
+          port: <%= $database[port] -%>
 <% } -%>
-<% if $database[1][hostname] != undef { %>
-          hostname: <%= $database[1][hostname] -%>
+<% if $database[hostname] != undef { %>
+          hostname: <%= $database[hostname] -%>
 <% } -%>
-<% if $database[1][format] != undef { %>
-          format: <%= $database[1][format] -%>
+<% if $database[format] != undef { %>
+          format: <%= $database[format] -%>
 <% } -%>
-<% if $database[1][ssl_mode] != undef { %>
-          ssl_mode: <%= $database[1][ssl_mode] -%>
+<% if $database[ssl_mode] != undef { %>
+          ssl_mode: <%= $database[ssl_mode] -%>
 <% } -%>
-<% if $database[1][ssl_cert] != undef { %>
-          ssl_cert: <%= $database[1][ssl_cert] -%>
+<% if $database[ssl_cert] != undef { %>
+          ssl_cert: <%= $database[ssl_cert] -%>
 <% } -%>
-<% if $database[1][ssl_key] != undef { %>
-          ssl_key: <%= $database[1][ssl_key] -%>
+<% if $database[ssl_key] != undef { %>
+          ssl_key: <%= $database[ssl_key] -%>
 <% } -%>
-<% if $database[1][ssl_root_cert] != undef { %>
-          ssl_root_cert: <%= $database[1][ssl_root_cert] -%>
+<% if $database[ssl_root_cert] != undef { %>
+          ssl_root_cert: <%= $database[ssl_root_cert] -%>
 <% } -%>
-<% if $database[1][ssl_crl] != undef { %>
-          ssl_crl: <%= $database[1][ssl_crl] -%>
+<% if $database[ssl_crl] != undef { %>
+          ssl_crl: <%= $database[ssl_crl] -%>
 <% } -%>
-<% if $database[1][options] != undef { %>
-          options: <%= $database[1][options] %>
+<% if $database[options] != undef { %>
+          options: <%= $database[options] %>
 <% } -%>
 <% } -%>
 <% } -%>
