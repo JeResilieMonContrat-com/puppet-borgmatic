@@ -46,7 +46,7 @@ location:
 <% if $patterns != undef { %>
     patterns:
 <% $patterns.each |$pattern| { -%>
-        - <%= $pattern %>
+        - '<%= $pattern %>'
 <% } -%>
 <% } -%>
 <% if $patterns_from != undef { %>
