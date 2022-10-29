@@ -11,7 +11,7 @@ location:
 
     repositories:
 <% $backup_servers.each |$server| { -%>
-        - <%= $backup_user %>@<%= $server %>:<%= $borgmatic::base_path %>/borgmatic_<%= $client %>
+        - ssh://<%= $backup_user %>@<%= $server %><%= $borgmatic::base_path %>/borgmatic_<%= $client %>
 <% } -%>
 <% if $one_file_system != undef { %>
     one_file_system: <%= $one_file_system %>
