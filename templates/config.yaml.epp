@@ -103,6 +103,7 @@ location:
      or $archive_name_format != undef
      or $relocated_repo_access_is_ok != undef
      or $unknown_unencrypted_repo_access_is_ok != undef
+     or $check_i_know_what_i_am_doing != undef
      or $extra_borg_options_prune != undef
      or $extra_borg_options_create != undef
      or $extra_borg_options_check != undef
@@ -159,6 +160,9 @@ storage:
 <% } -%>
 <% if $unknown_unencrypted_repo_access_is_ok == true { %>
     unknown_unencrypted_repo_access_is_ok: <%= $unknown_unencrypted_repo_access_is_ok -%>
+<% } -%>
+<% if $check_i_know_what_i_am_doing == true { %>
+    check_i_know_what_i_am_doing: <%= $check_i_know_what_i_am_doing -%>
 <% } -%>
 <% if $extra_borg_options_prune != undef or $extra_borg_options_create != undef or $extra_borg_options_check != undef { %>
     extra_borg_options:
