@@ -61,7 +61,7 @@ define borgmatic::client (
   Optional[Integer] $keep_monthly                                             = undef,
   Optional[Integer] $keep_yearly                                              = undef,
   Optional[String] $retention_prefix                                          = undef,
-  Optional[Array[Enum['repository', 'archives', 'extract', 'data']]] $checks  = undef,
+  Optional[Array[Variant[String, Hash]]] $checks                              = undef,
   Optional[Array] $check_repositories                                         = undef,
   Optional[Integer] $check_last                                               = undef,
   Optional[String] $consistency_prefix                                        = undef,
@@ -77,13 +77,13 @@ define borgmatic::client (
   Optional[Array] $after_everything                                           = undef,
   Optional[Array] $on_error                                                   = undef,
   Optional[String] $database_type                                             = undef,
-  Optional[Array] $databases                                                   = undef,
+  Optional[Array] $databases                                                  = undef,
   Optional[String] $healthchecks                                              = undef,
   Optional[String] $cronitor                                                  = undef,
   Optional[String] $pagerduty                                                 = undef,
   Optional[String] $cronhub                                                   = undef,
   Optional[String] $borg_default_umask                                        = undef
-){
+) {
 
   file { "${config_file_destination}/${config_file_name}":
     ensure  => file,

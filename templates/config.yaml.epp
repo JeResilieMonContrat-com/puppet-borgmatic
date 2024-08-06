@@ -212,24 +212,52 @@ consistency:
 <% if $checks != undef { %>
     checks:
 <% $checks.each |$check| { -%>
+    <%- if $check =~ String { -%>
         - <%= $check %>
+    <%- } else { -%>
+        - name: <%= $check['name'] %>
+          <%- if $check['frequency'] =~ String { -%>
+          frequency: <%= $check['frequency'] %>
+          <%- } -%>
+          <%- if $check['only_run_on'] =~ Array[String] { -%>
+          only_run_on:
+              <%- $check['only_run_on'].each |$check_only_run_on| { -%>
+              - <%= $check_only_run_on %>
+              <%- } -%>
+          <%- } -%>
+          <%- if $check['count_tolerance_percentage'] =~ Float { -%>
+          count_tolerance_percentage: <%= $check['count_tolerance_percentage'] %>
+          <%- } -%>
+          <%- if $check['data_sample_percentage'] =~ Float { -%>
+          data_sample_percentage: <%= $check['data_sample_percentage'] %>
+          <%- } -%>
+          <%- if $check['data_tolerance_percentage'] =~ Float { -%>
+          data_tolerance_percentage: <%= $check['data_tolerance_percentage'] %>
+          <%- } -%>
+          <%- if $check['xxh64sum_command'] =~ String { -%>
+          xxh64sum_command: <%= $check['xxh64sum_command'] %>
+          <%- } -%>
+          <%- if $check['max_duration'] =~ Integer { -%>
+          max_duration: <%= $check['max_duration'] %>
+          <%- } -%>
+    <%- } -%>
 <% } -%>
-<% } else { %>
+<% } else { -%>
     checks:
         - disabled
 <% } -%>
-<% if $check_repositories != undef { %>
+<% if $check_repositories != undef { -%>
     check_repositories:
 <% $check_repositories.each |$repository| { -%>
         - <%= $repository %>
 <% } -%>
 <% } -%>
-<% if $check_last != undef { %>
+<% if $check_last != undef { -%>
     check_last: <%= $check_last -%>
 <% } -%>
 <% if $consistency_prefix != undef { -%>
     prefix: <%= $consistency_prefix %>
-<% } %>
+<% } -%>
 
 <% if $before_backup != undef
     or $before_prune != undef
@@ -303,6 +331,8 @@ hooks:
 <% if $databases != undef { %>
 <% if $database_type != undef and $database_type == 'mysql' { %>
     mysql_databases:
+<% } elsif $database_type != undef and $database_type == 'mariadb' { %>
+    mariadb_databases:
 <% } elsif $database_type != undef and $database_type == 'postgresql' { %>
     postgresql_databases:
 <% } -%>
